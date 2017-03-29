@@ -1,0 +1,76 @@
+﻿<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a title="Home" class="navbar-brand route" href="/">Brand</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                    <a title="Profile Settings" class="dropdown-toggle" data-toggle="dropdown">
+                        Hi {{currentUser.name}}!
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a title="Edit Profile" href="#">Edit Profile</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a [routerLink]="['/login']">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            <div>
+                <h3>Friend Requests</h3>
+                <ul class="list-unstyled">
+                    <li *ngFor="let user of requests">
+                        {{user.name}} -
+                                <a class="btn btn-link" (click)="acceptRequest(user._id)">
+                                    Accept request
+                                </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>Friends</h3>
+                <ul class="list-unstyled">
+                    <li *ngFor="let user of friends">
+                        {{user.name}} -
+                        <a class="btn btn-link" (click)="delete(user._id)">
+                            Remove from Friends
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <td>Actions</td>
+                </tr>
+                <tr *ngFor="let user of users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default" (click)="addFriend(user._id)">
+                                Follow
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
